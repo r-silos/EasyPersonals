@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <script>
+        
+        /* global function to keep track of wins */ 
+        let PlaWins = 0;
+        let CumWins = 0;
+        /* Function to randomly pick between R,P, & S, will be what computer picks in the game*/
+        function computerPlay(){
+            /*picks random number for future action assignment */
+            let ranNum = Math.floor((Math.random()) * 3 + 1);
+            console.log(ranNum);
+            /*will now assign action based on random num generated */
+            let computerChoice = (ranNum === 1) ? "Rock" : (ranNum === 2) ? "Paper" : (ranNum === 3) ? "Scissors" : "fuck";
+            console.log(computerChoice);
+
+            return computerChoice;
+        }
+
+        /*function to prompt for users choice in game */ 
+        function playerSelection(){
+            let playerAns = prompt("Please pick between Rock, Paper, & Scissors");
+            
+            /*turns answer to lowercase for easier if statement */
+            playerAns = playerAns.toLocaleLowerCase();
+            
+            /*the if statement to check what was inputted and return it */
+            if (playerAns === "rock") {
+                return "Rock";
+            } else if (playerAns === "paper") {
+                return "Paper";
+            } else {
+                return "Scissors";
+            }
+        }
+
+        /* function to play round of RPS */
+        function  playRound(x, y){
+            /*
+            alert(x + " is the computer choice");
+            alert(y + " is the human choice");
+            */ 
+        if (x === y) {
+            alert("you have tied with the A.I.");
+            /*return "tie";*/ 
+        } else if ((y === "Rock" & x === "Scissors") || (y === "Paper" & x === "Rock") || (y === "Scissors" & x === "Paper")) {
+            alert("you have won this round");
+            return PlaWins ++;
+        } else {
+            alert("you have lost this round");
+            return CumWins ++;
+        }
+        }
+
+        
+        /* function to run multiple rounds and declare winner of best of five */
+        function game(){
+
+            playRound(computerPlay(), playerSelection());
+            playRound(computerPlay(), playerSelection());
+            playRound(computerPlay(), playerSelection());
+            playRound(computerPlay(), playerSelection());
+            playRound(computerPlay(), playerSelection());
+            
+            if (PlaWins > CumWins){
+                alert("you have beat the AI in da game");
+            } else if (CumWins > PlaWins){
+                alert("DEFEAT overall");
+            } else {
+                alert("there has been a tie, SAD!");
+            }
+        }
+
+        game();
+        
+
+
+
+
+
+
+
+        
+    </script>
+</body>
+</html>
